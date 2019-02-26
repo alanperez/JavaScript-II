@@ -77,51 +77,92 @@ console.log(fullName);
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
 let allCaps = [];
 //ES5 WAY
-for(let i = 0; i < runners.length; i++) {
-  function runnerName() {
-    allCaps.push(runners[i].first_name.toUpperCase());
-  }
-  runnerName();
-}
-console.log(allCaps); 
+// for(let i = 0; i < runners.length; i++) {
+//   function runnerName() {
+//     allCaps.push(runners[i].first_name.toUpperCase());
+//   }
+//   runnerName();
+// }
+// console.log(allCaps); 
+
+//ES6 Way
+runners.map(function(runner) {
+    allCaps.push(runner.first_name.toUpperCase())
+})
+console.log(allCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
 let largeShirts = [];
 //ES5
-for(let i = 0; i < runners.length; i++)
-{
-    function runnerListFilter() 
-    {
-        if(runners[i].shirt_size === 'L') 
+// for(let i = 0; i < runners.length; i++)
+// {
+//     function runnerListFilter() 
+//     {
+//         if(runners[i].shirt_size === 'L') 
+//         {
+//             largeShirts.push(runners[i].first_name +" "+ runners[i].last_name);
+//         }
+//     }
+//     runnerListFilter();
+// }
+// console.log(largeShirts);
+
+// ES6 WAY
+    runners.filter(function(runnerShirtFilter) {
+        if (runnerShirtFilter.shirt_size === 'L')
         {
-            largeShirts.push(runners[i].first_name +" "+ runners[i].last_name);
+            largeShirts.push(`${runnerShirtFilter.first_name} ${runnerShirtFilter.last_name}`)
         }
-    }
-    runnerListFilter();
-}
-console.log(largeShirts);
+    })
+    console.log(largeShirts);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
 // let ticketPriceTotal = [];
     //ES5 WAY
-let ticketPriceTotal = 0;
-    for(let i = 0; i < runners.length; i++)
-    {
-        function addTickets()
-        {
-            ticketPriceTotal += runners[i].donation;
-        }
-        addTickets();
-    }
-console.log(ticketPriceTotal);
+// let ticketPriceTotal = 0;
+//     for(let i = 0; i < runners.length; i++)
+//     {
+//         function addTickets()
+//         {
+//             ticketPriceTotal += runners[i].donation;
+//         }
+//         addTickets();
+//     }
+// console.log(ticketPriceTotal);
 
+
+//ES6 WAY
+let ticketPriceTotal = runners.reduce(function(value, addTickets) {
+    return value + addTickets.donation;
+   }, 0);
+console.log(ticketPriceTotal);
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+//return people with donations above 50 dollars
+
+   //ES5
+   let runnerMoney = [];
+   runners.filter(function(runnerDonation) {
+    if (runnerDonation.donation > 50)
+    {
+        runnerMoney.push(`${runnerDonation.first_name} ${runnerDonation.last_name} donated this amount: ${runnerDonation.donation} to this event`)
+    }
+})
+console.log(runnerMoney);
+
 
 // Problem 2
-
+//return email captialized
+let companyEmail = runners.map(function(compEmail){
+        return compEmail.email.toUpperCase();
+    })
+    console.log(companyEmail);
 // Problem 3
+//return id of runners
+runners.forEach( function(index) {
+  console.log(index.id);
+});
