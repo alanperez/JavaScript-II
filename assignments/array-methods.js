@@ -57,21 +57,21 @@ const runners = [{"id":1,"first_name":"Charmain","last_name":"Seiler","email":"c
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName. 
 let fullName = [];
 
-//ES5
+//ES5 WAY
 
-    for(let i = 0; i < runners.length; i++) {
-        function addName()
-        {
-            console.log(`${runners[i].first_name} ${runners[i].last_name}`);
-        }
-        addName();
-    }
+    // for(let i = 0; i < runners.length; i++) {
+    //     function addName()
+    //     {
+    //         console.log(`${runners[i].first_name} ${runners[i].last_name}`);
+    //     }
+    //     addName();
+    // }
 
 //ES6
-// runners.forEach( (run) => {
-// fullName.push(`${run.first_name} ${run.last_name}`);
-// })
-// console.log(fullName);
+runners.forEach( (run) => {
+fullName.push(`${run.first_name} ${run.last_name}`);
+})
+console.log(fullName);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
